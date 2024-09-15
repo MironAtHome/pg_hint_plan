@@ -413,8 +413,8 @@ static bool enable_hint_table_check(bool *newval, void **extra, GucSource source
 static void assign_enable_hint_table(bool newval, void *extra);
 
 /* Module callbacks */
-void		_PG_init(void);
-void		_PG_fini(void);
+PGDLLEXPORT void		_PG_init(void);
+PGDLLEXPORT void		_PG_fini(void);
 
 static void push_hint(HintState *hstate);
 static void pop_hint(void);
@@ -664,7 +664,7 @@ pg_hint_ExecutorEnd(QueryDesc *queryDesc)
 /*
  * Module load callbacks
  */
-void
+PGDLLEXPORT void
 _PG_init(void)
 {
 	PLpgSQL_plugin	**var_ptr;
@@ -764,7 +764,7 @@ _PG_init(void)
  * Module unload callback
  * XXX never called
  */
-void
+PGDLLEXPORT void
 _PG_fini(void)
 {
 	PLpgSQL_plugin	**var_ptr;
